@@ -5,7 +5,7 @@ var router = express.Router();
 var OAuth2 = require("oauth").OAuth2;
 var GitHubApi = require("github");
 
-var token ="63f7060a650618969d07dccc012243a07f9afd8a";
+var token = process.env.gitslack_token;
 var github = new GitHubApi({
 	version: "3.0.0",
 	debug: true,
@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 function authenticateGitHubAPI() {
 	github.authenticate({
 		type: "oauth",
-                token: "63f7060a650618969d07dccc012243a07f9afd8a"
+                token: token
         });
 }
 
