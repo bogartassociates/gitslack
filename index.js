@@ -170,16 +170,16 @@ function getTeamRepos(params, res) {
 function createNewTeam(params, res) {
 	authenticateGitHubAPI();
 	//team name
+	if (params.length != 1) {
+		res.send("Invalid parameters -  Usage: /gitslack [team-name]");
+		return;
+	}
 	var name = params.shift();
 	var repos = [];
-	if (params.length > 0) {
-		repos =params;
-	}
 	github.orgs.createTeam({
 		org: "bogartassociates",
 		permission: "admin",
-		name: name,
-		repo_names: repos
+		name: name
 	}, function (err, result) {
 		if (err != null) {
 			var obj = JSON.parse(err);
@@ -217,7 +217,7 @@ function listAvailableTeams(params,  res) {
 
 function validCommands() {
 	var validCommands = "Valid Commands:\n\t [Team Commands] - addUserToTeam|createNewTeam|listAvailableTeams|listTeamMembers\n\t";
-	validCommands += "[Repository Commands] - addTeamToRepo|createNewRepo|listAvailableRepos";
+	validCommands += "[Repository Commands] - addTeamToRepo|createNewRepo|listTeamRepos";
 	
 	return validCommands;
 }
