@@ -1,4 +1,5 @@
 # gitslack
+Gitslack is a nodeJS Slack slash-command integration with the chat/collaboration tool Slack! It allows members of GitHub repositories to perform various functions in a corporate GitHub account that would not otherwise be available without administrative privileges on the account. 
 
 ##Usage
 
